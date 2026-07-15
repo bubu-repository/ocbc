@@ -1,0 +1,8 @@
+@import "./tokens/tokens.css";
+@import "./components/Logo/Logo.css";
+@import "./components/Heading/Heading.css";
+@import "./components/Text/Text.css";
+@import "./components/Button/Button.css";
+@import "./components/Tag/Tag.css";
+@import "./components/Icon/Icon.css";
+@import "./components/SlideCard/SlideCard.css";

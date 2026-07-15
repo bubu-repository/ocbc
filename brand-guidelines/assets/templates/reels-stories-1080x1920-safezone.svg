@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" width="1080" height="1920">
+  <rect x="0" y="0" width="1080" height="1920" fill="#0D0D0D"/>
+
+  <!-- top exclusion zone: 0-250px -->
+  <rect x="0" y="0" width="1080" height="250" fill="#DA291C" fill-opacity="0.25"/>
+  <text x="30" y="130" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#FFFFFF">Top 250px — account/handle overlay, Stories progress bar</text>
+
+  <!-- right exclusion strip: full height, 150px wide -->
+  <rect x="930" y="0" width="150" height="1920" fill="#DA291C" fill-opacity="0.25"/>
+  <text x="940" y="960" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#FFFFFF" transform="rotate(90 940 960)">Right 150px — like/comment/share/save icons</text>
+
+  <!-- bottom exclusion zone: last 320px -->
+  <rect x="0" y="1600" width="1080" height="320" fill="#DA291C" fill-opacity="0.25"/>
+  <text x="30" y="1780" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#FFFFFF">Bottom 320px — captions, sound attribution, platform UI</text>
+
+  <!-- effective safe canvas ~1080x1350 centered -->
+  <rect x="0" y="285" width="930" height="1350" fill="none" stroke="#FFFFFF" stroke-width="3" stroke-dasharray="10 8"/>
+  <text x="30" y="270" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#FFFFFF">Effective safe canvas (~1080×1350, same ratio as IG carousel)</text>
+
+  <!-- hero hook text placement -->
+  <text x="60" y="500" font-family="Helvetica, Arial, sans-serif" font-size="34" fill="#FFFFFF">Hero hook text sits here</text>
+  <text x="60" y="540" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#939598">(upper-middle third of safe zone)</text>
+
+  <text x="30" y="1900" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#58595B">Reels / Stories — 1080×1920 · UI exclusion zones shaded</text>
+</svg>

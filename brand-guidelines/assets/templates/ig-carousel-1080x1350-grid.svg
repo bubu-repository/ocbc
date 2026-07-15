@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1350" width="1080" height="1350">
+  <rect x="0" y="0" width="1080" height="1350" fill="#F5F4F2"/>
+
+  <!-- outer margin (64px) -->
+  <rect x="64" y="64" width="952" height="1222" fill="none" stroke="#58595B" stroke-width="2" stroke-dasharray="8 6"/>
+
+  <!-- safe zone (80px) -->
+  <rect x="80" y="80" width="920" height="1190" fill="none" stroke="#DA291C" stroke-width="2" stroke-dasharray="4 4"/>
+
+  <!-- 12-column grid, 24px gutter, inside the 64px margin -->
+  <g stroke="#58595B" stroke-width="1" opacity="0.35">
+    <!-- column width = (952 - 11*24) / 12 = 57.333 -->
+    <!-- x positions of each column start -->
+  </g>
+  <g fill="#58595B" fill-opacity="0.12">
+    <rect x="64.0" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="145.33" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="226.67" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="308.0" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="389.33" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="470.67" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="552.0" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="633.33" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="714.67" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="796.0" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="877.33" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+    <rect x="958.67" y="64" width="57.33" height="1222" fill-opacity="0.12"/>
+  </g>
+
+  <!-- logo zone, top-left, 120px height -->
+  <rect x="80" y="80" width="280" height="120" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-dasharray="2 4"/>
+  <text x="90" y="220" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#1A1A1A">Logo zone (slide 1 only, 120px h)</text>
+
+  <!-- swipe indicator zone bottom-right -->
+  <rect x="900" y="1230" width="100" height="40" fill="none" stroke="#1A1A1A" stroke-width="2" stroke-dasharray="2 4"/>
+  <text x="760" y="1290" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#1A1A1A">Swipe indicator ("1/7")</text>
+
+  <!-- title label -->
+  <text x="80" y="1330" font-family="Helvetica, Arial, sans-serif" font-size="24" fill="#58595B">IG Carousel — 1080×1350 · 12-col grid, 64px margin, 24px gutter · safe zone 80px (red)</text>
+</svg>

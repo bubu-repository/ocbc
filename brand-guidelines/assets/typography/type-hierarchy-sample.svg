@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 900" width="1080" height="900">
+  <rect x="0" y="0" width="1080" height="900" fill="#FFFFFF"/>
+  <text x="40" y="45" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#58595B">Type sizing reference — set in Geomanist (or Inter fallback) in production. Shown here in system sans-serif for layout/scale only.</text>
+
+  <text x="40" y="160" font-family="Helvetica, Arial, sans-serif" font-weight="bold" font-size="88" fill="#1A1A1A">Rp 500 ribu</text>
+  <text x="40" y="190" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#DA291C">H1 / Hero — 72–96px on IG canvas, Bold/Black weight</text>
+
+  <text x="40" y="290" font-family="Helvetica, Arial, sans-serif" font-weight="600" font-size="52" fill="#1A1A1A">Cara Beli SBN Ritel</text>
+  <text x="40" y="315" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#DA291C">H2 / Section head — 44–56px, SemiBold/Medium weight</text>
+
+  <text x="40" y="380" font-family="Helvetica, Arial, sans-serif" font-weight="500" font-size="34" fill="#1A1A1A">Yang sering dilewatkan</text>
+  <text x="40" y="405" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#DA291C">H3 / Subhead — 32–36px</text>
+
+  <text x="40" y="465" font-family="Helvetica, Arial, sans-serif" font-size="28" fill="#1A1A1A">Cek jadwal kupon dan tanggal jatuh tempo sebelum konfirmasi.</text>
+  <text x="40" y="495" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#DA291C">Body — 26–30px, Regular weight</text>
+
+  <text x="40" y="545" font-family="Helvetica, Arial, sans-serif" font-size="21" fill="#58595B">Sumber: OJK, 2025</text>
+  <text x="40" y="570" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#DA291C">Caption / Meta — 20–22px</text>
+
+  <line x1="40" y1="620" x2="1040" y2="620" stroke="#939598" stroke-width="1"/>
+
+  <text x="40" y="660" font-family="Helvetica, Arial, sans-serif" font-size="20" fill="#1A1A1A" font-weight="bold">Rules</text>
+  <text x="40" y="690" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#58595B">— Never set body copy in the primary red; under 24px it reads as an error state.</text>
+  <text x="40" y="715" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#58595B">— Line length on-slide: 32–40 characters per line for H1/H2.</text>
+  <text x="40" y="740" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#58595B">— Minimum text size on any 1080px canvas: 26px.</text>
+  <text x="40" y="765" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#58595B">— Use tabular (fixed-width) numerals wherever figures are compared.</text>
+</svg>

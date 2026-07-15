@@ -1,0 +1,25 @@
+.ocbc-text {
+  font-family: var(--ocbc-font-family);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ocbc-text--body {
+  font-size: var(--ocbc-size-body);
+}
+
+.ocbc-text--caption {
+  font-size: var(--ocbc-size-caption);
+}
+
+.ocbc-text--default {
+  color: var(--ocbc-charcoal);
+}
+
+.ocbc-text--muted {
+  color: var(--ocbc-slate);
+}
+
+.ocbc-text--inverse {
+  color: var(--ocbc-white);
+}

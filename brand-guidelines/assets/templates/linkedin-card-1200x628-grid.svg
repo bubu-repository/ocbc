@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 628" width="1200" height="628">
+  <rect x="0" y="0" width="1200" height="628" fill="#FFFFFF"/>
+
+  <!-- outer margin (60px) -->
+  <rect x="60" y="60" width="1080" height="508" fill="none" stroke="#58595B" stroke-width="2" stroke-dasharray="8 6"/>
+
+  <!-- 55/45 split line -->
+  <line x1="660" y1="60" x2="660" y2="568" stroke="#DA291C" stroke-width="2" stroke-dasharray="4 4"/>
+  <text x="670" y="90" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#DA291C">55% / 45% split</text>
+
+  <!-- left: headline zone -->
+  <rect x="60" y="60" width="600" height="508" fill="#58595B" fill-opacity="0.06"/>
+  <text x="90" y="330" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#1A1A1A">Headline claim</text>
+  <text x="90" y="360" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#58595B">(left 55% of frame)</text>
+
+  <!-- right: chart/stat zone -->
+  <rect x="660" y="60" width="480" height="508" fill="#1A1A1A" fill-opacity="0.05"/>
+  <text x="700" y="330" font-family="Helvetica, Arial, sans-serif" font-size="26" fill="#1A1A1A">Chart / stat block</text>
+  <text x="700" y="360" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#58595B">(right 45% of frame)</text>
+
+  <!-- source line zone -->
+  <rect x="60" y="540" width="1080" height="28" fill="none" stroke="#1A1A1A" stroke-width="1" stroke-dasharray="2 4"/>
+  <text x="70" y="560" font-family="Helvetica, Arial, sans-serif" font-size="16" fill="#58595B">Source line (Caption size)</text>
+
+  <text x="60" y="30" font-family="Helvetica, Arial, sans-serif" font-size="22" fill="#58595B">LinkedIn Card — 1200×628 · 12-col grid, 60px margin</text>
+</svg>

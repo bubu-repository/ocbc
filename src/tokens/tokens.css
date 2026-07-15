@@ -1,0 +1,32 @@
+:root {
+  /* Color: verified against OCBC's public logo file and brand page. See the
+     source brand-os skill's references/02_OCBC_VISUAL_DESIGN_SYSTEM.md for
+     provenance notes and the small disagreement between this value and the
+     Pantone 485 C conversion. */
+  --ocbc-red: #ed1c24;
+  --ocbc-red-deep: #a31d13;
+  --ocbc-charcoal: #1a1a1a;
+  --ocbc-near-black: #0d0d0d;
+  --ocbc-slate: #58595b;
+  --ocbc-cool-gray: #939598;
+  --ocbc-white: #ffffff;
+  --ocbc-off-white: #f5f4f2;
+  --ocbc-green: #1e7a46;
+  --ocbc-amber: #b8860b;
+
+  /* Type: Geomanist is OCBC's official corporate typeface (licensed, not
+     bundled here); Inter is the metrically-close free fallback. Load
+     Geomanist yourself if you have a license, otherwise this stack degrades
+     to Inter / system sans automatically. */
+  --ocbc-font-family: "Geomanist", "Inter", -apple-system, "Segoe UI", sans-serif;
+
+  --ocbc-size-h1: clamp(2.25rem, 5vw, 4rem);
+  --ocbc-size-h2: clamp(1.75rem, 3.5vw, 2.75rem);
+  --ocbc-size-h3: clamp(1.25rem, 2.2vw, 1.75rem);
+  --ocbc-size-body: clamp(1rem, 1.4vw, 1.125rem);
+  --ocbc-size-caption: 0.8125rem;
+
+  --ocbc-space-safe: 1.25rem;
+  --ocbc-radius-pill: 999px;
+  --ocbc-radius-card: 12px;
+}

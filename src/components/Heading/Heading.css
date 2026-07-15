@@ -1,0 +1,30 @@
+.ocbc-heading {
+  font-family: var(--ocbc-font-family);
+  color: var(--ocbc-charcoal);
+  margin: 0;
+  line-height: 1.1;
+  font-weight: 700;
+}
+
+.ocbc-heading--h1 {
+  font-size: var(--ocbc-size-h1);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.ocbc-heading--h2 {
+  font-size: var(--ocbc-size-h2);
+  font-weight: 700;
+}
+
+.ocbc-heading--h3 {
+  font-size: var(--ocbc-size-h3);
+  font-weight: 600;
+}
+
+/* Never set heading text in the primary red below H1 size: under ~24px
+   equivalent it reads as an error state, not a brand cue. Use .ocbc-text--accent
+   sparingly, on short fragments only. */
+.ocbc-heading--accent {
+  color: var(--ocbc-red);
+}

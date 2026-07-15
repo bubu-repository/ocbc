@@ -1,0 +1,12 @@
+{
+  "primary": { "name": "OCBC Red", "hex": "#ED1C24", "note": "From current logo file; Pantone 485C conversion ~#DA291C" },
+  "primaryDeep": { "name": "OCBC Red Deep", "hex": "#A31D13" },
+  "deepCharcoal": { "name": "Deep Charcoal", "hex": "#1A1A1A" },
+  "nearBlack": { "name": "Near-Black", "hex": "#0D0D0D" },
+  "slateGray": { "name": "Slate Gray", "hex": "#58595B" },
+  "coolGray": { "name": "Cool Gray", "hex": "#939598" },
+  "paperWhite": { "name": "Paper White", "hex": "#FFFFFF" },
+  "warmOffWhite": { "name": "Warm Off-White", "hex": "#F5F4F2" },
+  "growthGreen": { "name": "Growth Green", "hex": "#1E7A46", "note": "Positive financial figures only" },
+  "alertAmber": { "name": "Alert Amber", "hex": "#B8860B", "note": "Risk flags and disclaimers only" }
+}

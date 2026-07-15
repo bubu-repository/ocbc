@@ -1,0 +1,32 @@
+.ocbc-button {
+  font-family: var(--ocbc-font-family);
+  font-weight: 700;
+  font-size: var(--ocbc-size-body);
+  border: none;
+  border-radius: var(--ocbc-radius-pill);
+  padding: 0.9em 1.75em;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  transition: transform 120ms ease, opacity 120ms ease;
+}
+
+.ocbc-button:hover {
+  opacity: 0.92;
+}
+
+.ocbc-button:active {
+  transform: scale(0.98);
+}
+
+.ocbc-button--primary {
+  background: var(--ocbc-red);
+  color: var(--ocbc-white);
+}
+
+.ocbc-button--onRed {
+  background: var(--ocbc-white);
+  color: var(--ocbc-red);
+}
