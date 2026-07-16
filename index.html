@@ -1,12 +1,417 @@
-<!doctype html>
-<html lang="id">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>OCBC Design System</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/site/main.tsx"></script>
-  </body>
-</html>
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>OCBC · Social Performance Audit · BUBU</title><style>
+:root{--bg:#F7F6F3;--panel:#FFFFFF;--panel2:#EFEDE8;--ink:#161513;--muted:#71706B;--line:#E3E1DB;
+--bubu:#FF5900;--bubu-ink:#D14A00;--good:#0E8A4C;--bad:#C81E1E;--bad-soft:#FBE9E9;--good-soft:#E8F4EE;
+--grid:rgba(22,21,19,.09);--bar:#C9C4BA;--shadow:0 1px 2px rgba(22,21,19,.04),0 8px 24px rgba(22,21,19,.05);}
+@media(prefers-color-scheme:dark){:root{--bg:#141311;--panel:#1D1B18;--panel2:#262421;--ink:#F3F0EA;--muted:#A29E96;--line:#33302B;
+--bubu:#FF6A1A;--bubu-ink:#FF7B33;--good:#3ECB84;--bad:#F0455C;--bad-soft:#3A1B20;--good-soft:#12291D;
+--grid:rgba(243,240,234,.09);--bar:#57534B;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);}}
+:root[data-theme="light"]{--bg:#F7F6F3;--panel:#FFFFFF;--panel2:#EFEDE8;--ink:#161513;--muted:#71706B;--line:#E3E1DB;
+--bubu:#FF5900;--bubu-ink:#D14A00;--good:#0E8A4C;--bad:#C81E1E;--bad-soft:#FBE9E9;--good-soft:#E8F4EE;
+--grid:rgba(22,21,19,.09);--bar:#C9C4BA;--shadow:0 1px 2px rgba(22,21,19,.04),0 8px 24px rgba(22,21,19,.05);}
+:root[data-theme="dark"]{--bg:#141311;--panel:#1D1B18;--panel2:#262421;--ink:#F3F0EA;--muted:#A29E96;--line:#33302B;
+--bubu:#FF6A1A;--bubu-ink:#FF7B33;--good:#3ECB84;--bad:#F0455C;--bad-soft:#3A1B20;--good-soft:#12291D;
+--grid:rgba(243,240,234,.09);--bar:#57534B;--shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px rgba(0,0,0,.35);}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:64px;}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased;}
+a{color:var(--bubu-ink);text-decoration:none;}a:hover{text-decoration:underline;}
+:focus-visible{outline:2px solid var(--bubu);outline-offset:2px;}
+.disp{font-weight:800;text-transform:uppercase;letter-spacing:.015em;line-height:1.04;}
+/* app bar */
+.appbar{position:sticky;top:0;z-index:50;background:#121110;color:#F3F0EA;display:flex;align-items:center;gap:18px;padding:0 20px;height:52px;border-bottom:2px solid var(--bubu);}
+.logo{display:flex;align-items:center;gap:9px;font-weight:800;letter-spacing:.06em;font-size:13px;}
+.logo .lb{width:22px;height:22px;background:var(--bubu);color:#121110;display:grid;place-items:center;font-weight:900;font-size:14px;border-radius:3px;}
+.abtitle{font-size:12px;color:#A29E96;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+nav{margin-left:auto;display:flex;gap:2px;overflow-x:auto;}
+nav a{color:#CFCBC3;font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;padding:6px 9px;border-radius:5px;white-space:nowrap;}
+nav a:hover{background:#2A2723;color:#fff;text-decoration:none;}
+.tog{background:transparent;border:1px solid #3A3733;color:#CFCBC3;border-radius:5px;padding:5px 10px;font-size:11px;cursor:pointer;margin-left:6px;}
+.wrap{max-width:1020px;margin:0 auto;padding:0 24px 72px;}
+/* hero */
+.hero{padding:44px 0 8px;}
+.eyebrow{color:var(--bubu-ink);font-size:11.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;margin:0 0 12px;}
+.hero h1{font-size:clamp(34px,6vw,58px);margin:0 0 12px;}
+.hero .sub{color:var(--muted);font-size:16px;max-width:62ch;margin:0 0 8px;}
+.meta{color:var(--muted);font-size:12px;letter-spacing:.05em;text-transform:uppercase;}
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin:22px 0 8px;}
+@media(max-width:860px){.stats{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:560px){.stats{grid-template-columns:repeat(2,1fr);}}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 14px 12px;box-shadow:var(--shadow);}
+.stat .sv{font-size:26px;font-weight:800;letter-spacing:-.01em;font-variant-numeric:tabular-nums;}
+.stat .sk{font-size:10.5px;color:var(--muted);letter-spacing:.07em;text-transform:uppercase;margin-top:6px;line-height:1.4;}
+.stat.hot .sv{color:var(--bad);}.stat.win .sv{color:var(--good);}.stat.brand .sv{color:var(--bubu-ink);}
+/* sections */
+section{padding:40px 0 4px;border-top:1px solid var(--line);margin-top:32px;}
+.shead{display:flex;align-items:baseline;gap:14px;margin-bottom:14px;}
+.snum{font-size:13px;font-weight:800;color:var(--bubu-ink);letter-spacing:.1em;}
+section h2{font-size:clamp(20px,3vw,27px);margin:0;font-weight:800;text-transform:uppercase;letter-spacing:.02em;}
+.cap{font-size:13px;color:var(--muted);margin:10px 2px 0;max-width:78ch;}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:18px 18px 14px;box-shadow:var(--shadow);margin-top:10px;overflow-x:auto;}
+/* charts */
+.chart .grid{stroke:var(--grid);}.chart .baseline{stroke:var(--muted);stroke-dasharray:3 3;}
+.chart .tick{fill:var(--muted);font-size:10.5px;font-variant-numeric:tabular-nums;}
+.chart .axlab{fill:var(--muted);font-size:10.5px;letter-spacing:.08em;font-weight:700;}
+.chart .blab{fill:var(--ink);font-size:12.5px;}
+.chart .bval{fill:var(--ink);font-size:12px;font-weight:700;font-variant-numeric:tabular-nums;}
+.chart .bar{fill:var(--bar);}.chart .bar-top{fill:var(--bubu);}
+.chart .seg-gv{fill:var(--bad);}.chart .seg-org{fill:var(--bar);}
+.chart .seg-lab-in{fill:#fff;font-size:12px;font-weight:700;}
+.chart .area{fill:var(--bubu);opacity:.10;}.chart .line{fill:none;stroke:var(--bubu);stroke-width:2;}.chart .pt{fill:var(--bubu);}
+.chart .band{fill:var(--bubu);opacity:.08;}.chart .band-lab{fill:var(--bubu-ink);font-size:11px;font-weight:800;letter-spacing:.06em;}
+.chart .axis{stroke:var(--muted);}.chart .me{fill:var(--bubu);}.chart .them{fill:var(--bar);}
+.chart .mp-name{fill:var(--ink);font-size:14px;font-weight:800;}.chart .mp-note{fill:var(--muted);font-size:10.5px;}
+/* wwd */
+.wwd{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:14px 0 4px;}
+@media(max-width:760px){.wwd{grid-template-columns:1fr;}}
+.wwd-item{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);}
+.wwd-item .wl{font-size:9.5px;letter-spacing:.14em;font-weight:800;display:block;margin-bottom:6px;}
+.wwd-item p{margin:0;font-size:13.5px;line-height:1.5;}
+.wwd-item.reads .wl{color:var(--muted);}.wwd-item.why .wl{color:var(--bad);}.wwd-item.move .wl{color:var(--good);}
+/* two-col grids */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
+@media(max-width:760px){.grid2{grid-template-columns:1fr;}}
+/* posts */
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:10px;}
+@media(max-width:860px){.posts{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.posts{grid-template-columns:1fr;}}
+.post{display:block;background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:13px 14px;box-shadow:var(--shadow);color:inherit;}
+.post:hover{border-color:var(--bubu);text-decoration:none;}
+.post-head{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+.rank{font-weight:800;color:var(--bubu-ink);font-size:13px;}
+.chip{font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;background:var(--panel2);color:var(--muted);padding:3px 7px;border-radius:12px;font-weight:700;}
+.post-date{font-size:10.5px;color:var(--muted);margin-left:auto;font-variant-numeric:tabular-nums;}
+.post-metrics{display:flex;gap:12px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.post-metrics b{color:var(--ink);}
+.post-why{margin-top:9px;padding-top:8px;border-top:1px dashed var(--line);font-size:12px;color:var(--ink);line-height:1.45;}
+/* scorecard */
+.score{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px;}
+@media(max-width:760px){.score{grid-template-columns:1fr;}}
+.scol{border-radius:12px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);}
+.scol h3{margin:0;padding:11px 16px;color:#fff;font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:800;}
+.scol.win h3{background:var(--good);}.scol.bad h3{background:var(--bad);}
+.scol ul{margin:0;padding:6px 0;list-style:none;background:var(--panel);}
+.scol li{padding:10px 16px;border-bottom:1px solid var(--line);font-size:13.5px;display:flex;gap:10px;align-items:baseline;}
+.scol li:last-child{border-bottom:none;}
+.scol .n{font-weight:800;font-variant-numeric:tabular-nums;min-width:64px;text-align:right;}
+.scol.win .n{color:var(--good);}.scol.bad .n{color:var(--bad);}
+.scol .t{color:var(--muted);}.scol .t b{color:var(--ink);font-weight:700;}
+/* comments */
+.cmts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px;}
+@media(max-width:760px){.cmts{grid-template-columns:1fr;}}
+.cmt{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:12px 14px;box-shadow:var(--shadow);}
+.cmt .ch{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;}
+.cmt .cu{font-size:12px;font-weight:800;}
+.cmt .ct{font-size:10.5px;color:var(--muted);}
+.cmt .tagc{font-size:9px;letter-spacing:.08em;font-weight:800;padding:2.5px 7px;border-radius:10px;margin-left:auto;}
+.cmt.bad{border-left:3px solid var(--bad);}.cmt.bad .tagc{background:var(--bad-soft);color:var(--bad);}
+.cmt.fan{border-left:3px solid var(--good);}.cmt.fan .tagc{background:var(--good-soft);color:var(--good);}
+.cmt .cx{font-size:13.5px;line-height:1.5;}
+/* playbook */
+.bubu{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--bubu);border-radius:0 12px 12px 0;padding:16px 20px;margin:12px 0;box-shadow:var(--shadow);}
+.bubu .bl{font-size:10px;letter-spacing:.16em;color:var(--bubu-ink);font-weight:800;margin-bottom:8px;}
+.bubu p{margin:0 0 8px;font-size:14.5px;line-height:1.55;}
+.bubu p:last-child{margin:0;color:var(--muted);}
+.ideas{display:grid;grid-template-columns:1fr;gap:10px;margin-top:10px;}
+.idea{background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:var(--shadow);display:grid;grid-template-columns:52px 1fr;overflow:hidden;}
+.idea .in{background:var(--bubu);color:#121110;display:grid;place-items:center;font-weight:900;font-size:18px;}
+.idea .ib{padding:13px 16px;}
+.idea h3{margin:0 0 5px;font-size:15.5px;font-weight:800;}
+.idea p{margin:0 0 8px;font-size:13.5px;color:var(--ink);line-height:1.5;}
+.idea .ev{font-size:11.5px;color:var(--muted);font-variant-numeric:tabular-nums;}
+.idea .ev b{color:var(--good);font-weight:800;letter-spacing:.06em;}
+/* table */
+.tbl{overflow:auto;margin-top:10px;border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);}
+table{border-collapse:collapse;width:100%;font-size:13px;background:var(--panel);}
+th,td{text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);}
+th{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);position:sticky;top:0;background:var(--panel);}
+td.numc{font-variant-numeric:tabular-nums;text-align:right;}
+tr.r-gv td{background:var(--bad-soft);}
+tbody tr:last-child td{border-bottom:none;}
+details{margin-top:10px;}summary{cursor:pointer;font-size:12.5px;color:var(--bubu-ink);font-weight:700;letter-spacing:.04em;text-transform:uppercase;}
+.gapnote{font-size:12.5px;color:var(--muted);border:1px dashed var(--line);border-radius:9px;padding:10px 14px;margin-top:12px;}
+footer{margin-top:44px;padding-top:14px;border-top:2px solid var(--bubu);color:var(--muted);font-size:11.5px;letter-spacing:.04em;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+@media print{.appbar,nav,.tog{display:none!important;}body{font-size:12px;}section{break-inside:auto;}.panel,.stat,.post,.idea,.cmt,.scol{break-inside:avoid;box-shadow:none;}}
+</style></head><body><div class="appbar"><div class="logo"><span class="lb">B</span>BUBU.COM</div><span class="abtitle">Social Performance Audit · OCBC Indonesia</span><nav><a href="#overview">Overview</a><a href="#content">Content</a><a href="#distribution">Distribution</a><a href="#competitive">Competitive</a><a href="#benchmark">Benchmark</a><a href="#community">Community</a><a href="#scorecard">Scorecard</a><a href="#playbook">Playbook</a><a href="#data">Data</a></nav><button class="tog" id="tog">Theme</button></div><div class="wrap"><header class="hero"><p class="eyebrow">Social Performance Audit</p><h1 class="disp">OCBC Indonesia:<br>buying reach, not building relevance</h1><p class="sub">132 posts audited against HSBC, CIMB Niaga, and UOB. What earns attention, what is bought, and the five moves that convert 156K followers into a community.</p><p class="meta">Confidential · @ocbc_indonesia · 11 Apr to 11 Jul 2026 · Prepared 13 Jul 2026</p></header><section id="overview"><div class="shead"><span class="snum">01</span><h2>Overview</h2></div><div class="stats"><div class="stat hot"><div class="sv">0.16%</div><div class="sk">Engagement rate · organic</div></div><div class="stat win"><div class="sv">3.0x</div><div class="sk">Licensed IP vs baseline</div></div><div class="stat hot"><div class="sv">92.5%</div><div class="sk">Comments from giveaways</div></div><div class="stat "><div class="sv">155,958</div><div class="sk">Followers</div></div><div class="stat "><div class="sv">10.2/wk</div><div class="sk">Posting cadence</div></div><div class="stat brand"><div class="sv">Thu</div><div class="sk">Best day · 311 vs Tue 209</div></div></div><div class="panel"><svg viewBox="0 0 760 128" width="100%" class="chart">
+<text x="6" y="13" class="axlab">REPORTED COMMENTS</text>
+<rect x="6" y="19" width="692" height="30" class="seg-gv"/><rect x="698" y="19" width="56" height="30" class="seg-org"/>
+<text x="16" y="39" class="seg-lab-in">26,735 · 92.5% from 10 giveaway posts</text>
+<text x="6" y="82" class="axlab">UNPROMPTED COMMENTS (122 ORGANIC POSTS)</text>
+<rect x="6" y="88" width="56" height="30" class="seg-org"/>
+<text x="72" y="108" class="bval">2,017</text></svg></div><p class="cap">10 giveaway posts inflate the comment KPI 13.3x. Entry requires a comment plus 3 tags for a Rp100K GoPay draw, so the unit is a contest entry, not sentiment. Organic reality: 255 likes, 10 comments per post.</p><div class="wwd"><div class="wwd-item reads"><span class="wl">READ</span><p>155,958 followers, 0.16% react to a normal post. The audience was acquired, not activated.</p></div><div class="wwd-item why"><span class="wl">MECHANISM</span><p>Weekly prize mechanics train followers to show up only when paid. Baseline engagement decays between drops.</p></div><div class="wwd-item move"><span class="wl">MOVE</span><p>Remove giveaways from the engagement KPI. Judge content on the organic baseline. Reallocate the budget (07).</p></div></div></section>
+<section id="content"><div class="shead"><span class="snum">02</span><h2>Content engine</h2></div><div class="panel"><svg viewBox="0 0 760 274" width="100%" class="chart" role="img">
+<line x1="411" y1="10" x2="411" y2="270" class="baseline"/>
+<text x="411" y="8" class="tick" text-anchor="middle">baseline 255</text>
+<text x="188" y="38" class="blab" text-anchor="end">Licensed IP (10)</text>
+<rect x="200" y="23" width="496" height="20" class="bar-top"/>
+<text x="704" y="38" class="bval">599</text>
+<text x="188" y="74" class="blab" text-anchor="end">Corporate news (8)</text>
+<rect x="200" y="59" width="464" height="20" class="bar"/>
+<text x="672" y="74" class="bval">560</text>
+<text x="188" y="110" class="blab" text-anchor="end">Serialized (Diari Bapak Baru) (6)</text>
+<rect x="200" y="95" width="216" height="20" class="bar"/>
+<text x="424" y="110" class="bval">261</text>
+<text x="188" y="146" class="blab" text-anchor="end">Promo &amp; lifestyle (25)</text>
+<rect x="200" y="131" width="210" height="20" class="bar"/>
+<text x="418" y="146" class="bval">254</text>
+<text x="188" y="182" class="blab" text-anchor="end">Relatable &amp; meme (39)</text>
+<rect x="200" y="167" width="200" height="20" class="bar"/>
+<text x="408" y="182" class="bval">241</text>
+<text x="188" y="218" class="blab" text-anchor="end">Product explainers (18)</text>
+<rect x="200" y="203" width="190" height="20" class="bar"/>
+<text x="398" y="218" class="bval">230</text>
+<text x="188" y="254" class="blab" text-anchor="end">Fraud PSAs (16)</text>
+<rect x="200" y="239" width="171" height="20" class="bar"/>
+<text x="379" y="254" class="bval">207</text>
+</svg></div><p class="cap">Median likes per organic post by pillar, post count in brackets. Licensed IP leads. Fraud PSAs: highest volume after promos, last place on engagement.</p><div class="stats"><div class="stat win"><div class="sv">768</div><div class="sk">Toy Story median likes</div></div><div class="stat "><div class="sv">395</div><div class="sk">Star Wars median</div></div><div class="stat win"><div class="sv">6,330</div><div class="sk">Diari Bapak Baru median views</div></div><div class="stat "><div class="sv">4,150</div><div class="sk">Generic Reel median views</div></div><div class="stat hot"><div class="sv">16</div><div class="sk">Fraud PSA posts · 207 median</div></div><div class="stat "><div class="sv">2,731</div><div class="sk">Best meme post likes</div></div></div><h3 class="disp" style="font-size:16px;margin:26px 0 2px;">Top 6 organic posts, decoded</h3><div class="posts"><a class="post" href="https://www.instagram.com/p/DX6n23rHZaS/" target="_blank" rel="noopener"><div class="post-head"><span class="rank">01</span><span class="chip">Corporate news</span><span class="post-date">2026-05-04</span></div><div class="post-metrics"><span><b>5,522</b> likes</span><span><b>189</b> comments</span></div><div class="post-why">Customers&#x27; own money: the HSBC retail acquisition.</div></a><a class="post" href="https://www.instagram.com/p/DXwEJDYiJV_/" target="_blank" rel="noopener"><div class="post-head"><span class="rank">02</span><span class="chip">Corporate news</span><span class="post-date">2026-04-30</span></div><div class="post-metrics"><span><b>3,679</b> likes</span><span><b>242</b> comments</span></div><div class="post-why">A deposit rumour answered publicly. The audience rewards directness.</div></a><a class="post" href="https://www.instagram.com/p/DX-st4CHRdk/" target="_blank" rel="noopener"><div class="post-head"><span class="rank">03</span><span class="chip">Relatable &amp; meme</span><span class="post-date">2026-05-06</span></div><div class="post-metrics"><span><b>2,731</b> likes</span><span><b>18</b> comments</span></div><div class="post-why">Relatable humor travels: 2,731 likes, only 18 comments.</div></a><a class="post" href="https://www.instagram.com/p/DYMQJ3PnV78/" target="_blank" rel="noopener"><div class="post-head"><span class="rank">04</span><span class="chip">Product explainers</span><span class="post-date">2026-05-11</span></div><div class="post-metrics"><span><b>1,602</b> likes</span><span><b>96</b> comments</span></div><div class="post-why">A feature people actually use: 4 new in-app currencies.</div></a><a class="post" href="https://www.instagram.com/p/DY9X1tnyhoQ/" target="_blank" rel="noopener"><div class="post-head"><span class="rank">05</span><span class="chip">Licensed IP</span><span class="post-date">2026-05-30</span></div><div class="post-metrics"><span><b>1,581</b> likes</span><span><b>14</b> comments</span><span><b>44,280</b> views</span></div><div class="post-why">Influencer collab. Reach is rented from the creator&#x27;s audience.</div></a><a class="post" href="https://www.instagram.com/p/DamAN3CSDhY/" target="_blank" rel="noopener"><div class="post-head"><span class="rank">06</span><span class="chip">Licensed IP</span><span class="post-date">2026-07-10</span></div><div class="post-metrics"><span><b>1,541</b> likes</span><span><b>16</b> comments</span><span><b>37,327</b> views</span></div><div class="post-why">Toy Story cosplay Reel. The IP pulls the views, not the offer.</div></a></div><div class="wwd"><div class="wwd-item reads"><span class="wl">READ</span><p>Winners are licensed IP and money news. Losers are explainers and safety notices.</p></div><div class="wwd-item why"><span class="wl">MECHANISM</span><p>Engagement follows social currency (a collectible card worth posting) or personal stakes (news about the reader&#x27;s money). Explainers offer neither.</p></div><div class="wwd-item move"><span class="wl">MOVE</span><p>Shift volume from fraud PSAs and generic promos into IP and money-stakes stories.</p></div></div></section>
+<section id="distribution"><div class="shead"><span class="snum">03</span><h2>Distribution</h2></div><div class="grid2"><div class="panel"><svg viewBox="0 0 760 130" width="100%" class="chart" role="img">
+<line x1="406" y1="10" x2="406" y2="126" class="baseline"/>
+<text x="406" y="8" class="tick" text-anchor="middle">baseline 255</text>
+<text x="188" y="38" class="blab" text-anchor="end">Single (13)</text>
+<rect x="200" y="23" width="496" height="20" class="bar"/>
+<text x="704" y="38" class="bval">615</text>
+<text x="188" y="74" class="blab" text-anchor="end">Carousel (74)</text>
+<rect x="200" y="59" width="199" height="20" class="bar"/>
+<text x="407" y="74" class="bval">247</text>
+<text x="188" y="110" class="blab" text-anchor="end">Reel (35)</text>
+<rect x="200" y="95" width="178" height="20" class="bar"/>
+<text x="386" y="110" class="bval">221</text>
+</svg><p class="cap">Median likes by format. Carousels: 61% of output, baseline results.</p></div><div class="panel"><svg viewBox="0 0 760 274" width="100%" class="chart" role="img">
+<line x1="607" y1="10" x2="607" y2="270" class="baseline"/>
+<text x="607" y="8" class="tick" text-anchor="middle">baseline 255</text>
+<text x="188" y="38" class="blab" text-anchor="end">Mon</text>
+<rect x="200" y="23" width="413" height="20" class="bar"/>
+<text x="621" y="38" class="bval">259</text>
+<text x="188" y="74" class="blab" text-anchor="end">Tue</text>
+<rect x="200" y="59" width="333" height="20" class="bar"/>
+<text x="541" y="74" class="bval">209</text>
+<text x="188" y="110" class="blab" text-anchor="end">Wed</text>
+<rect x="200" y="95" width="443" height="20" class="bar"/>
+<text x="651" y="110" class="bval">278</text>
+<text x="188" y="146" class="blab" text-anchor="end">Thu</text>
+<rect x="200" y="131" width="496" height="20" class="bar"/>
+<text x="704" y="146" class="bval">311</text>
+<text x="188" y="182" class="blab" text-anchor="end">Fri</text>
+<rect x="200" y="167" width="440" height="20" class="bar"/>
+<text x="648" y="182" class="bval">276</text>
+<text x="188" y="218" class="blab" text-anchor="end">Sat</text>
+<rect x="200" y="203" width="357" height="20" class="bar"/>
+<text x="565" y="218" class="bval">224</text>
+<text x="188" y="254" class="blab" text-anchor="end">Sun</text>
+<rect x="200" y="239" width="367" height="20" class="bar"/>
+<text x="575" y="254" class="bval">230</text>
+</svg><p class="cap">Median likes by weekday. Thu beats Tue by 49%. Nothing in the calendar uses this.</p></div></div><div class="panel"><svg viewBox="0 0 760 200" width="100%" class="chart">
+<line x1="44" y1="135" x2="746" y2="135" class="grid"/>
+<text x="36" y="139" class="tick" text-anchor="end">100</text>
+<line x1="44" y1="105" x2="746" y2="105" class="grid"/>
+<text x="36" y="109" class="tick" text-anchor="end">200</text>
+<line x1="44" y1="74" x2="746" y2="74" class="grid"/>
+<text x="36" y="78" class="tick" text-anchor="end">300</text>
+<path d="M 44,112 L 98,141 L 152,138 L 206,114 L 260,71 L 314,36 L 368,93 L 422,78 L 476,95 L 530,32 L 584,80 L 638,86 L 692,77 L 746,92 L 746,166 L 44,166 Z" class="area"/><path d="M 44,112 L 98,141 L 152,138 L 206,114 L 260,71 L 314,36 L 368,93 L 422,78 L 476,95 L 530,32 L 584,80 L 638,86 L 692,77 L 746,92" class="line"/>
+<circle cx="44" cy="112" r="3.2" class="pt"><title>2026-04-06: 177</title></circle>
+<text x="44" y="190" class="tick" text-anchor="middle">06 Apr</text>
+<circle cx="98" cy="141" r="3.2" class="pt"><title>2026-04-13: 82</title></circle>
+<circle cx="152" cy="138" r="3.2" class="pt"><title>2026-04-20: 93</title></circle>
+<text x="152" y="190" class="tick" text-anchor="middle">20 Apr</text>
+<circle cx="206" cy="114" r="3.2" class="pt"><title>2026-04-27: 170</title></circle>
+<circle cx="260" cy="71" r="3.2" class="pt"><title>2026-05-04: 311</title></circle>
+<text x="260" y="190" class="tick" text-anchor="middle">04 May</text>
+<circle cx="314" cy="36" r="3.2" class="pt"><title>2026-05-11: 424</title></circle>
+<circle cx="368" cy="93" r="3.2" class="pt"><title>2026-05-18: 240</title></circle>
+<text x="368" y="190" class="tick" text-anchor="middle">18 May</text>
+<circle cx="422" cy="78" r="3.2" class="pt"><title>2026-05-25: 288</title></circle>
+<circle cx="476" cy="95" r="3.2" class="pt"><title>2026-06-01: 233</title></circle>
+<text x="476" y="190" class="tick" text-anchor="middle">01 Jun</text>
+<circle cx="530" cy="32" r="3.2" class="pt"><title>2026-06-08: 438</title></circle>
+<circle cx="584" cy="80" r="3.2" class="pt"><title>2026-06-15: 281</title></circle>
+<text x="584" y="190" class="tick" text-anchor="middle">15 Jun</text>
+<circle cx="638" cy="86" r="3.2" class="pt"><title>2026-06-22: 262</title></circle>
+<circle cx="692" cy="77" r="3.2" class="pt"><title>2026-06-29: 290</title></circle>
+<text x="692" y="190" class="tick" text-anchor="middle">29 Jun</text>
+<circle cx="746" cy="92" r="3.2" class="pt"><title>2026-07-06: 241</title></circle>
+</svg><p class="cap">Weekly median likes, organic posts. The June lift is the Toy Story launch. Outside it, flat.</p></div><div class="stats"><div class="stat "><div class="sv">4,150</div><div class="sk">Organic Reel median views</div></div><div class="stat hot"><div class="sv">661,739</div><div class="sk">Boosted film views</div></div><div class="stat hot"><div class="sv">600</div><div class="sk">Likes on that film · 0.09%</div></div><div class="stat "><div class="sv">61%</div><div class="sk">Output that is carousels</div></div></div><p class="cap">The 661,739-view brand film earned 600 likes: paid reach with no resonance. Reels still matter, they carry 4,150 median views to non-followers, but boost proven IP content, not corporate films.</p></section>
+<section id="competitive"><div class="shead"><span class="snum">04</span><h2>Competitive position</h2></div>
+<div class="panel"><svg viewBox="0 0 760 340" width="100%" class="chart">
+<rect x="90" y="48" width="610" height="112" class="band"/>
+<text x="395" y="70" class="band-lab" text-anchor="middle">OPEN TERRITORY &middot; TWO-WAY COMMUNITY &middot; UNCLAIMED</text>
+<line x1="90" y1="160" x2="700" y2="160" class="axis"/><line x1="395" y1="48" x2="395" y2="272" class="axis"/>
+<text x="242" y="294" class="axlab" text-anchor="middle">SMALLER AUDIENCE</text>
+<text x="548" y="294" class="axlab" text-anchor="middle">LARGER AUDIENCE</text>
+<text x="82" y="104" class="axlab" text-anchor="end">TWO-WAY</text>
+<text x="82" y="216" class="axlab" text-anchor="end">BROADCAST</text>
+<circle cx="430" cy="205" r="9" class="me"/>
+<text x="430" y="191" class="mp-name" text-anchor="middle">OCBC</text>
+<text x="430" y="227" class="mp-note" text-anchor="middle">156K followers &middot; ER 0.16%</text>
+<circle cx="200" cy="210" r="7" class="them"/>
+<text x="200" y="196" class="mp-name" text-anchor="middle">UOB</text>
+<text x="200" y="232" class="mp-note" text-anchor="middle">28K followers &middot; ER 0.61%</text>
+<circle cx="160" cy="258" r="7" class="them"/>
+<text x="160" y="244" class="mp-name" text-anchor="middle">HSBC</text>
+<text x="160" y="280" class="mp-note" text-anchor="middle">29K followers &middot; ER 0.22%</text>
+<circle cx="650" cy="270" r="7" class="them"/>
+<text x="650" y="256" class="mp-name" text-anchor="middle">CIMB Niaga</text>
+<text x="650" y="292" class="mp-note" text-anchor="middle">382K followers &middot; ER 0.017%</text>
+</svg></div>
+<p class="cap">Followers and engagement rate only say how big and how quiet each account is. What they post, and why one post spikes, is the part worth copying or avoiding.</p>
+<div class="tbl"><table><thead><tr><th>Bank</th><th>What they actually post</th><th>Signature move</th><th class="numc">Result</th></tr></thead><tbody>
+<tr><td><b>UOB</b></td><td>Financial-tips carousels at baseline, plus a recurring CSR partnership: CODEFEST, a coding competition run with Ruangguru</td><td>Co-branded education sponsorship, not owned content</td><td class="numc">2,530 to 2,861 likes on CODEFEST posts vs 194 baseline (13x)</td></tr>
+<tr><td><b>HSBC</b></td><td>Athlete meet-and-greets and booth coverage from the Indonesia Open, under a branded #HSBCSuperfans tag</td><td>Sports sponsorship, spectator content</td><td class="numc">1,428 likes vs 64 baseline (22x), but 0 to 4 comments</td></tr>
+<tr><td><b>CIMB Niaga</b></td><td>Generic "chase your dream" lifestyle posts at baseline, occasional city activations (Blok M pop-up)</td><td>No standout owned property</td><td class="numc">2,717 comments were customer anger over a service migration, not a campaign</td></tr>
+</tbody></table></div>
+<div class="wwd"><div class="wwd-item reads"><span class="wl">READ</span><p>Every competitor's biggest spike is either a sponsorship (UOB, HSBC) or an accident (CIMB Niaga's service-migration backlash mirrors OCBC's own comment problem in Section 06). None of the four has built an owned content property.</p></div>
+<div class="wwd-item why"><span class="wl">MECHANISM</span><p>Sponsorship content borrows an athlete's or partner's audience for a one-off spike, likes without conversation, and it disappears once the event ends. It never becomes a habit the account owns. A service-change post spiking comments is not engagement, it is customers venting because nothing else in the feed gives them a channel.</p></div>
+<div class="wwd-item move"><span class="wl">MOVE</span><p>Do not copy sponsorship-for-likes or chase CIMB Niaga's follower count. The two-way quadrant is empty because sponsorships end and generic lifestyle content never starts a conversation. OCBC's licensed IP, paired with the BCA-style owned property in Section 05, is the only lever in this set built to last.</p></div></div>
+</section>
+<section id="benchmark"><div class="shead"><span class="snum">05</span><h2>The gold standard: BCA</h2></div>
+<div class="stats"><div class="stat win"><div class="sv">955K</div><div class="sk">BCA FOLLOWERS</div></div><div class="stat win"><div class="sv">56x</div><div class="sk">OWNED IP SERIES VS BASELINE</div></div><div class="stat"><div class="sv">316</div><div class="sk">COMMENTS ON A LOYALTY GACHA POST</div></div><div class="stat"><div class="sv">7</div><div class="sk">UNIVERSITIES TAGGED IN THE SERIES</div></div></div>
+<div class="panel"><svg viewBox="0 0 760 130" width="100%" class="chart" role="img">
+<text x="188" y="38" class="blab" text-anchor="end">Genera-Z Battle, best post</text>
+<rect x="200" y="23" width="496" height="20" class="bar-top"/>
+<text x="704" y="38" class="bval">15,834</text>
+<text x="188" y="74" class="blab" text-anchor="end">Genera-Z Battle series (n=7 med.)</text>
+<rect x="200" y="59" width="97" height="20" class="bar"/>
+<text x="305" y="74" class="bval">3,096</text>
+<text x="188" y="110" class="blab" text-anchor="end">BCA baseline (typical post)</text>
+<rect x="200" y="95" width="2" height="20" class="bar"/>
+<text x="210" y="110" class="bval">55</text>
+</svg></div>
+<p class="cap">Genera-Z Battle is a BCA-owned dance and talent competition between university teams (UGM vs UNPAD, UIN Sunan Gunung Djati, Universitas Cenderawasih), posted as Reels and tagging each campus account directly. It is not licensed IP, BCA built it, and it runs 56x the account's typical post.</p>
+<div class="wwd"><div class="wwd-item reads"><span class="wl">READ</span><p>BCA's baseline post performs worse than OCBC's (roughly 55 likes vs 255), but one owned property, a university battle series, produces the platform's biggest organic spikes, and a gamified loyalty feature (Gacha BCA) outperforms every giveaway on comments.</p></div>
+<div class="wwd-item why"><span class="wl">MECHANISM</span><p>Tagging a university turns every post into inter-campus pride. Students and alumni share to back their team, which is a free distribution channel no paid boost can buy. Gacha BCA rewards existing customers with a game mechanic tied to real spend, not a follow-and-tag contest, so it builds habit instead of renting a comment.</p></div>
+<div class="wwd-item move"><span class="wl">MOVE</span><p>OCBC rents Disney's fanbase. BCA built its own with students. OCBC's licensed IP has the same shareability lever available, pair it with a tribal or competitive mechanic (city vs city, campus vs campus) instead of a static card render, and replace the giveaway with a loyalty game tied to real product use.</p></div></div>
+</section>
+<section id="community"><div class="shead"><span class="snum">06</span><h2>Community health</h2></div><div class="stats"><div class="stat "><div class="sv">99</div><div class="sk">Comments on flagship post</div></div><div class="stat hot"><div class="sv">0</div><div class="sk">Visible brand replies</div></div><div class="stat hot"><div class="sv">2</div><div class="sk">Doxxing posts left live · PII redacted by BUBU</div></div><div class="stat win"><div class="sv">58.7%</div><div class="sk">Positive share, per own-asset threads</div></div></div><div class="cmt bad"><div class="ch"><span class="cu">@baek_hae_film</span><span class="ct">22h</span><span class="tagc">SERVICE</span></div><div class="cx">Gimana ni udah buka rekening dari tgl 18 Juni smpe skrng belum dpat2 kartu ATM nya @ocbc_indonesia</div></div><div class="cmt bad"><div class="ch"><span class="cu">@donbobss1</span><span class="ct">1w</span><span class="tagc">TRUST</span></div><div class="cx">BANK ANEH INI. TRANSFER KE REKENING TUJUAN, BILANG SUCCESSFULL, TAPI HILANG! @ocbc_indonesia</div></div><div class="cmt fan"><div class="ch"><span class="cu">@dendy_kristiano</span><span class="ct">2d</span><span class="tagc">BUY INTENT</span></div><div class="cx">Yang visa platinum udah ngk ada lagi ya</div></div><div class="cmt fan"><div class="ch"><span class="cu">@yanitaa.dr</span><span class="ct">1w</span><span class="tagc">FAN</span></div><div class="cx">#FUNanciallyFIT bareng OCBC</div></div><p class="cap">Verbatim, from post <a href="https://www.instagram.com/ocbc_indonesia/p/DZbk5ojIkvq/" target="_blank" rel="noopener">DZbk5ojIkvq</a>, captured 13 Jul 2026. The thread holds all four types: service failures, trust breaks, purchase questions, and real fans. The problem is not the mix. It is that nobody answers any of them.</p><div class="wwd"><div class="wwd-item reads"><span class="wl">READ</span><p>Complaints, buying questions and fans sit in the same thread. All unanswered.</p></div><div class="wwd-item why"><span class="wl">MECHANISM</span><p>Comments are the fastest escalation path, so silence turns the brand page over to its angriest users. Unanswered buy-intent is revenue left on the table.</p></div><div class="wwd-item move"><span class="wl">MOVE</span><p>Same-day replies, PII removed on sight, and public answers to the top three repeated complaints.</p></div></div></section>
+<section id="scorecard"><div class="shead"><span class="snum">07</span><h2>Scorecard</h2></div><div class="score"><div class="scol win"><h3>Working</h3><ul><li><span class="n">768</span><span class="t"><b>Licensed IP.</b> 3.0x baseline, the only reliable organic engine</span></li><li><span class="n">6,330</span><span class="t"><b>Serialized content.</b> Diari Bapak Baru out-views generic Reels (4,150)</span></li><li><span class="n">3,679</span><span class="t"><b>Crisis handling.</b> The deposit-rumour clarification became the #2 post; directness pays</span></li><li><span class="n">2,731</span><span class="t"><b>Meme voice.</b> The best joke hit 10.7x baseline; the tone fits the audience</span></li><li><span class="n">10.2/wk</span><span class="t"><b>Cadence.</b> Output is disciplined and consistent, it just points at the wrong content</span></li></ul></div><div class="scol bad"><h3>Broken</h3><ul><li><span class="n">0.16%</span><span class="t"><b>Engagement rate.</b> 1 in 600 followers reacts to a normal post</span></li><li><span class="n">92.5%</span><span class="t"><b>Giveaway dependence.</b> Ten Fridays in a row bought almost all comments</span></li><li><span class="n">0</span><span class="t"><b>Replies.</b> Complaints, buy-intent and doxxing all sit unanswered</span></li><li><span class="n">207</span><span class="t"><b>Fraud PSA overload.</b> 16 posts, last-place engagement</span></li><li><span class="n">0.09%</span><span class="t"><b>Paid vanity.</b> 661,739 bought views converted to 600 likes</span></li></ul></div></div></section>
+<section id="playbook"><div class="shead"><span class="snum">08</span><h2>BUBU playbook</h2></div><div class="bubu"><div class="bl">BUBU POSITION</div><p>OCBC buys attention weekly and owns none of it. The licence and the serial are the only assets that earn attention unpaid. Build the system around them.</p><p>It's not about visibility. It's about relevance. OCBC has the visibility; the five moves below convert it.</p></div><div class="ideas"><div class="idea"><div class="in">1</div><div class="ib"><h3>Nyala Drops: a release program for the IP cards</h3><p>Fixed reveal calendar, numbered limited editions, and a show-your-card UGC ritual. The card becomes the reason to follow the account instead of a promo backdrop.</p><div class="ev"><b>DATA</b> Toy Story 768 median likes, 3.0x baseline, with zero community mechanics attached today. BCA's owned Genera-Z Battle series proves the tribal mechanic works at 56x its baseline (05).</div></div></div><div class="idea"><div class="in">2</div><div class="ib"><h3>Scale the serial into a money-life universe</h3><p>Three recurring characters across life stages: first salary, new parent, sandwich generation. Episodic content builds a returning audience; one-offs do not.</p><div class="ev"><b>DATA</b> Diari Bapak Baru 6,330 median views vs 4,150 generic Reel baseline, no paid support.</div></div></div><div class="idea"><div class="in">3</div><div class="ib"><h3>Reply Desk: answer the thread, publicly</h3><p>Same-day replies with a human voice, PII stripped on sight, and a monthly format answering the three most repeated complaints. Service proof becomes content.</p><div class="ev"><b>DATA</b> 99 comments on the flagship post, 0 visible brand replies, 2 doxxing posts live.</div></div></div><div class="idea"><div class="in">4</div><div class="ib"><h3>Creator roster replaces the Friday giveaway</h3><p>Move the giveaway budget to 8-10 finance and lifestyle micro-creators on always-on briefs. Creator credibility compounds; contest comments reset to zero every week.</p><div class="ev"><b>DATA</b> Giveaways bought 92.5% of comments. BCA's Gacha loyalty feature drew 316 comments with no tag-3-friends mechanic, real usage, not contest entries (05).</div></div></div><div class="idea"><div class="in">5</div><div class="ib"><h3>Fewer, better, timed</h3><p>Hero IP Reels on Thu, one fraud PSA a week, carousels only when the format earns it. Redirect boost budget from corporate films to proven IP content.</p><div class="ev"><b>DATA</b> Thu median 311 vs Tue 209 (+49%). Carousels: 61% of output at baseline. Boosted film: 0.09% like rate.</div></div></div></div></section>
+<section id="data"><div class="shead"><span class="snum">09</span><h2>Data</h2></div><div class="gapnote">This audit covers owned-account performance. Sentiment, Crisis Grade and true Share of Voice need a social-listening export (Brandwatch, Meltwater, Talkwalker, MediaWave). One week of that data completes the brand-health picture.</div><details open><summary>All 132 posts</summary><div class="tbl" style="max-height:420px;"><table><thead><tr><th>Date</th><th>Format</th><th>Pillar</th><th class="numc">Likes</th><th class="numc">Comments</th><th class="numc">Views</th><th>Link</th></tr></thead><tbody><tr class=""><td>2026-05-04</td><td>Carousel</td><td>Corporate news</td><td class="numc">5,522</td><td class="numc">189</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DX6n23rHZaS/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-30</td><td>Single</td><td>Corporate news</td><td class="numc">3,679</td><td class="numc">242</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXwEJDYiJV_/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-06</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">2,731</td><td class="numc">18</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DX-st4CHRdk/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-05-09</td><td>Carousel</td><td>Giveaways</td><td class="numc">1,694</td><td class="numc">4,167</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYHE07knSTa/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-11</td><td>Single</td><td>Product explainers</td><td class="numc">1,602</td><td class="numc">96</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYMQJ3PnV78/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-30</td><td>Reel</td><td>Licensed IP</td><td class="numc">1,581</td><td class="numc">14</td><td class="numc">44,280</td><td><a href="https://www.instagram.com/p/DY9X1tnyhoQ/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-06-13</td><td>Carousel</td><td>Giveaways</td><td class="numc">1,546</td><td class="numc">2,807</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZgi5SbncOj/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-10</td><td>Reel</td><td>Licensed IP</td><td class="numc">1,541</td><td class="numc">16</td><td class="numc">37,327</td><td><a href="https://www.instagram.com/p/DamAN3CSDhY/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-05-30</td><td>Carousel</td><td>Giveaways</td><td class="numc">1,422</td><td class="numc">2,613</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DY80xAfnYW4/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-06-20</td><td>Carousel</td><td>Giveaways</td><td class="numc">1,371</td><td class="numc">2,388</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZzNy1YHTfh/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-05-16</td><td>Carousel</td><td>Giveaways</td><td class="numc">1,330</td><td class="numc">3,145</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYYxSOYnY93/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-07-04</td><td>Carousel</td><td>Giveaways</td><td class="numc">1,309</td><td class="numc">4,033</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaXQ5pNDFeC/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-06-27</td><td>Carousel</td><td>Giveaways</td><td class="numc">1,238</td><td class="numc">2,439</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaFPTm1nUlF/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-05-23</td><td>Carousel</td><td>Giveaways</td><td class="numc">1,210</td><td class="numc">1,808</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYqy3iXD4uW/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-11</td><td>Single</td><td>Licensed IP</td><td class="numc">1,029</td><td class="numc">84</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZbk1UjIE3I/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-09</td><td>Reel</td><td>Corporate news</td><td class="numc">813</td><td class="numc">22</td><td class="numc">14,878</td><td><a href="https://www.instagram.com/p/DYGbKbdzQSO/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-07-11</td><td>Carousel</td><td>Giveaways</td><td class="numc">805</td><td class="numc">1,285</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DapRzfkEbrq/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-11</td><td>Single</td><td>Licensed IP</td><td class="numc">805</td><td class="numc">99</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZbk5ojIkvq/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-07</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">799</td><td class="numc">37</td><td class="numc">6,045</td><td><a href="https://www.instagram.com/p/DYCAw9aicVB/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-11</td><td>Single</td><td>Licensed IP</td><td class="numc">731</td><td class="numc">32</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZbkuI8oGsj/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-29</td><td>Carousel</td><td>Fraud PSAs</td><td class="numc">702</td><td class="numc">44</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXs_Zcwj4m_/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-10</td><td>Single</td><td>Relatable &amp; meme</td><td class="numc">678</td><td class="numc">47</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZZhFmNxMMf/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-11</td><td>Single</td><td>Product explainers</td><td class="numc">615</td><td class="numc">22</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYMPE5jHdbL/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-03</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">600</td><td class="numc">10</td><td class="numc">661,739</td><td><a href="https://www.instagram.com/p/DZGzk7LzlDd/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-05</td><td>Single</td><td>Corporate news</td><td class="numc">576</td><td class="numc">7</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZNPp5QTFEC/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-14</td><td>Single</td><td>Relatable &amp; meme</td><td class="numc">547</td><td class="numc">21</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYTnqrIHUBC/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-05</td><td>Carousel</td><td>Corporate news</td><td class="numc">545</td><td class="numc">30</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZL8hwBneum/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-11</td><td>Single</td><td>Promo &amp; lifestyle</td><td class="numc">540</td><td class="numc">14</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYMN6JiHcFL/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-02</td><td>Carousel</td><td>Product explainers</td><td class="numc">494</td><td class="numc">12</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaRypsaDwlB/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-25</td><td>Carousel</td><td>Corporate news</td><td class="numc">480</td><td class="numc">10</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZ_xGj8D4ay/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-29</td><td>Reel</td><td>Licensed IP</td><td class="numc">467</td><td class="numc">17</td><td class="numc">6,379</td><td><a href="https://www.instagram.com/p/DY57ICPjPsW/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class="r-gv"><td>2026-06-06</td><td>Carousel</td><td>Giveaways</td><td class="numc">444</td><td class="numc">33</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZPfKZVHR4e/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-08</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">438</td><td class="numc">11</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZUUt6VnR4u/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-13</td><td>Reel</td><td>Product explainers</td><td class="numc">437</td><td class="numc">12</td><td class="numc">7,234</td><td><a href="https://www.instagram.com/p/DZg3kmIyLOu/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-12</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">424</td><td class="numc">14</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYOevN8HWuJ/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-03</td><td>Single</td><td>Relatable &amp; meme</td><td class="numc">382</td><td class="numc">15</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZG0KOxktJh/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-20</td><td>Carousel</td><td>Licensed IP</td><td class="numc">381</td><td class="numc">9</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZykbhaHW8_/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-31</td><td>Carousel</td><td>Product explainers</td><td class="numc">376</td><td class="numc">15</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DY_EmQZnb0r/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-18</td><td>Carousel</td><td>Corporate news</td><td class="numc">366</td><td class="numc">19</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZtvhLCHQzJ/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-11</td><td>Reel</td><td>Serialized (Diari Bapak Baru)</td><td class="numc">360</td><td class="numc">10</td><td class="numc">5,752</td><td><a href="https://www.instagram.com/p/DZcQQD8yWCC/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-08</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">353</td><td class="numc">13</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYEmRtqnXza/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-13</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">349</td><td class="numc">14</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYRXfF5HS4M/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-10</td><td>Carousel</td><td>Fraud PSAs</td><td class="numc">347</td><td class="numc">13</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYJoxRLnU8M/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-16</td><td>Carousel</td><td>Fraud PSAs</td><td class="numc">324</td><td class="numc">20</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYZFvnmHUy-/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-27</td><td>Carousel</td><td>Licensed IP</td><td class="numc">323</td><td class="numc">12</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DY1aqtrD3JG/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-11</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">323</td><td class="numc">19</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYLrnPnHePG/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-12</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">322</td><td class="numc">6</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZe8CF6HTtX/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-03</td><td>Carousel</td><td>Product explainers</td><td class="numc">321</td><td class="numc">5</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaUCyyUDwt-/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-15</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">320</td><td class="numc">13</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYWMgzeksAA/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-30</td><td>Reel</td><td>Serialized (Diari Bapak Baru)</td><td class="numc">318</td><td class="numc">32</td><td class="numc">6,518</td><td><a href="https://www.instagram.com/p/DaMdEhmDS28/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-07</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">311</td><td class="numc">4</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYB6q0hHUNS/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-03</td><td>Reel</td><td>Licensed IP</td><td class="numc">307</td><td class="numc">5</td><td class="numc">4,413</td><td><a href="https://www.instagram.com/p/DaUXeMVjAnM/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-21</td><td>Reel</td><td>Serialized (Diari Bapak Baru)</td><td class="numc">306</td><td class="numc">11</td><td class="numc">3,830</td><td><a href="https://www.instagram.com/p/DYmLh4TSqJu/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-29</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">304</td><td class="numc">11</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaKvcSejxp3/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-12</td><td>Reel</td><td>Corporate news</td><td class="numc">304</td><td class="numc">11</td><td class="numc">9,176</td><td><a href="https://www.instagram.com/p/DXA5pJ_yS2S/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-28</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">299</td><td class="numc">11</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DY3q0VTnRSb/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-29</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">293</td><td class="numc">16</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DY6lkHeHUrx/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-21</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">288</td><td class="numc">7</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZ1JUnrjVnw/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-26</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">287</td><td class="numc">12</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaC-7ZvnYwi/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-27</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">284</td><td class="numc">14</td><td class="numc">4,226</td><td><a href="https://www.instagram.com/p/DY0xavYDzNb/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-03</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">276</td><td class="numc">16</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaU5zIegYkC/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-19</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">274</td><td class="numc">6</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZw2n3-HXq1/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-23</td><td>Single</td><td>Relatable &amp; meme</td><td class="numc">271</td><td class="numc">16</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZ7Kp2DIn-e/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-17</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">271</td><td class="numc">14</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZq9AnRnedi/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-07</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">271</td><td class="numc">10</td><td class="numc">1,882</td><td><a href="https://www.instagram.com/p/DYBRhOxS3Uj/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-27</td><td>Carousel</td><td>Product explainers</td><td class="numc">270</td><td class="numc">10</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaEmHfOnbR1/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-01</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">270</td><td class="numc">19</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZBpb3kHT57/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-18</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">261</td><td class="numc">13</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYd64mnHSKd/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-05</td><td>Carousel</td><td>Fraud PSAs</td><td class="numc">259</td><td class="numc">2</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DX8w9tZHQ28/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-25</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">257</td><td class="numc">9</td><td class="numc">8,859</td><td><a href="https://www.instagram.com/p/DYvvBrKoDlz/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-19</td><td>Carousel</td><td>Product explainers</td><td class="numc">256</td><td class="numc">12</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZwUV4dHVer/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-06</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">254</td><td class="numc">3</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DX_WbvsHbn4/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-22</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">253</td><td class="numc">19</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZ3t7aanYUm/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-22</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">247</td><td class="numc">10</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYopjzlHdxc/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-19</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">247</td><td class="numc">19</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYg7B_XHVpV/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-07</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">246</td><td class="numc">16</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DafGCkVnWMf/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-06</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">241</td><td class="numc">8</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DacoHUlEVnn/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-26</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">241</td><td class="numc">6</td><td class="numc">1,851</td><td><a href="https://www.instagram.com/p/DaCtkIMI4Pj/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-24</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">241</td><td class="numc">7</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYt5_UdjQ8N/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-19</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">240</td><td class="numc">9</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYgfn6jne9e/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-06</td><td>Carousel</td><td>Fraud PSAs</td><td class="numc">240</td><td class="numc">2</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DX-ssyVAQ5t/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-03</td><td>Single</td><td>Relatable &amp; meme</td><td class="numc">233</td><td class="numc">6</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZGy9IHkhZ2/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-05</td><td>Carousel</td><td>Product explainers</td><td class="numc">231</td><td class="numc">10</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaZhCRMnYbe/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-22</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">230</td><td class="numc">6</td><td class="numc">2,435</td><td><a href="https://www.instagram.com/p/DZ4Z7eZojYH/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-05</td><td>Carousel</td><td>Product explainers</td><td class="numc">228</td><td class="numc">8</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaZ1rxwjG-x/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-23</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">227</td><td class="numc">10</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYqePzCj1r7/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-09</td><td>Carousel</td><td>Licensed IP</td><td class="numc">226</td><td class="numc">10</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DajzyNCncqd/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-23</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">221</td><td class="numc">7</td><td class="numc">4,351</td><td><a href="https://www.instagram.com/p/DYrHZghSGv2/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-26</td><td>Carousel</td><td>Product explainers</td><td class="numc">217</td><td class="numc">14</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYzMa_0nX6N/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-28</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">216</td><td class="numc">12</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DaHK2uBkp16/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-04</td><td>Reel</td><td>Serialized (Diari Bapak Baru)</td><td class="numc">216</td><td class="numc">2</td><td class="numc">6,670</td><td><a href="https://www.instagram.com/p/DX53jNDo8lk/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-18</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">216</td><td class="numc">8</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXQrBHKD8Y1/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-30</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">209</td><td class="numc">28</td><td class="numc">2,150</td><td><a href="https://www.instagram.com/p/DaM9ul_lC2y/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-21</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">209</td><td class="numc">8</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXYumjVD22P/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-10</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">203</td><td class="numc">3</td><td class="numc">2,366</td><td><a href="https://www.instagram.com/p/DZZJHRcSZvn/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-26</td><td>Carousel</td><td>Product explainers</td><td class="numc">199</td><td class="numc">13</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYyMrTWE5Xu/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-26</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">198</td><td class="numc">10</td><td class="numc">1,815</td><td><a href="https://www.instagram.com/p/DYy10bnymwy/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-24</td><td>Carousel</td><td>Product explainers</td><td class="numc">194</td><td class="numc">7</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DYtXnqcHa_g/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-29</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">193</td><td class="numc">10</td><td class="numc">3,045</td><td><a href="https://www.instagram.com/p/DaKY4-gEQvC/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-09</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">193</td><td class="numc">8</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZW5WbLnbWK/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-06</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">193</td><td class="numc">6</td><td class="numc">3,323</td><td><a href="https://www.instagram.com/p/DZPKkCSS5oW/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-05</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">192</td><td class="numc">2</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DX8HyNlnYar/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-04</td><td>Carousel</td><td>Product explainers</td><td class="numc">187</td><td class="numc">7</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZJsZE8nQre/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-07-10</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">186</td><td class="numc">8</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DanBsMVHfuO/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-24</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">186</td><td class="numc">7</td><td class="numc">2,236</td><td><a href="https://www.instagram.com/p/DYtJ59mSjWo/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-02</td><td>Carousel</td><td>Product explainers</td><td class="numc">185</td><td class="numc">7</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZE3TWEnXel/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-05-25</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">183</td><td class="numc">13</td><td class="numc">1,761</td><td><a href="https://www.instagram.com/p/DYwRmdyoCpk/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-14</td><td>Reel</td><td>Serialized (Diari Bapak Baru)</td><td class="numc">182</td><td class="numc">6</td><td class="numc">8,878</td><td><a href="https://www.instagram.com/p/DXG6nyPj6oe/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-27</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">172</td><td class="numc">7</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXn2IU9j2tL/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-06</td><td>Carousel</td><td>Product explainers</td><td class="numc">170</td><td class="numc">3</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZOhZ2hCMEE/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-16</td><td>Reel</td><td>Serialized (Diari Bapak Baru)</td><td class="numc">170</td><td class="numc">11</td><td class="numc">6,143</td><td><a href="https://www.instagram.com/p/DXMTepFD0Tr/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-29</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">167</td><td class="numc">9</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXtpGK1j6DT/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-28</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">157</td><td class="numc">3</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXrELavDzdh/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-06-05</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">155</td><td class="numc">3</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DZM9V7mnWH_/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-17</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">140</td><td class="numc">2</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXNzET7ERuu/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-28</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">131</td><td class="numc">5</td><td class="numc">3,671</td><td><a href="https://www.instagram.com/p/DXqvlQySd1x/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-25</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">123</td><td class="numc">4</td><td class="numc">7,443</td><td><a href="https://www.instagram.com/p/DXjBUIPj6cc/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-22</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">119</td><td class="numc">8</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXbnO2MD0j_/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-25</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">113</td><td class="numc">8</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXiX7rRkvE7/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-26</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">108</td><td class="numc">4</td><td class="numc">4,075</td><td><a href="https://www.instagram.com/p/DXgcYsuSWeM/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-24</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">93</td><td class="numc">6</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXgw2WNj2tm/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-20</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">86</td><td class="numc">4</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXVgr9LD5Qy/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-19</td><td>Carousel</td><td>Relatable &amp; meme</td><td class="numc">82</td><td class="numc">2</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXTQPSIj-2b/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-16</td><td>Carousel</td><td>Product explainers</td><td class="numc">82</td><td class="numc">4</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXL37sTD_Np/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-24</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">76</td><td class="numc">1</td><td class="numc">1,943</td><td><a href="https://www.instagram.com/p/DXgdiiijwci/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-24</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">73</td><td class="numc">3</td><td class="numc">2,038</td><td><a href="https://www.instagram.com/p/DXf1gZdDyRV/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-23</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">71</td><td class="numc">1</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXeMMAFD45E/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-23</td><td>Reel</td><td>Fraud PSAs</td><td class="numc">67</td><td class="numc">1</td><td class="numc">1,759</td><td><a href="https://www.instagram.com/p/DXd3Yvzj0b8/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-15</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">59</td><td class="numc">12</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXJRpbTj3Nw/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-17</td><td>Carousel</td><td>Promo &amp; lifestyle</td><td class="numc">57</td><td class="numc">1</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DXOov0CD4v1/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-16</td><td>Reel</td><td>Relatable &amp; meme</td><td class="numc">52</td><td class="numc">2</td><td class="numc">1,567</td><td><a href="https://www.instagram.com/p/DXLMUGoD05s/" target="_blank" rel="noopener">open</a></td></tr>
+<tr class=""><td>2026-04-11</td><td>Carousel</td><td>Product explainers</td><td class="numc">50</td><td class="numc">14</td><td class="numc">-</td><td><a href="https://www.instagram.com/p/DW-VYg2D9mh/" target="_blank" rel="noopener">open</a></td></tr></tbody></table></div></details></section><footer><span>BUBU Cultural Intelligence · It's not about visibility. It's about relevance.</span><span>132 posts · @ocbc_indonesia · raw data: data/ocbc_posts_3mo.csv</span></footer></div><script>(function(){var b=document.getElementById("tog");b.addEventListener("click",function(){var c=document.documentElement.getAttribute("data-theme");var d=c?c==="dark":window.matchMedia("(prefers-color-scheme:dark)").matches;document.documentElement.setAttribute("data-theme",d?"light":"dark");});})();</script></body></html>
