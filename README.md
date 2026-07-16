@@ -2,7 +2,14 @@
 
 OCBC Indonesia's visual identity as a React component library: color and type tokens, the logo mark, and the small set of layout primitives used across the brand's social content (Instagram carousels, LinkedIn cards, Reels).
 
-This package is the code counterpart to the `OCBC_INDONESIA_BRAND_OS_SKILL` brand guidelines skill (voice, copywriting rules, layout specs). That skill documents the rules in prose; this package makes the visual rules buildable.
+This package is the code counterpart to the brand guidelines skill under `brand-guidelines/` (voice, copywriting rules, layout specs). That skill documents the rules in prose; this package makes the visual rules buildable.
+
+This repo has two separate build targets, and it matters which one runs where:
+
+- **The demo site** (`index.html`, `site/`) is what Vercel deploys. It's a small Vite app that imports the components straight from `src/` and renders the worked Dana Darurat carousel example, so there's always something real to look at live. `npm run build` (Vite) is the one Vercel calls; it outputs to `dist/`.
+- **The component library** (`src/`) is the actual publishable package. `npm run build:lib` (tsup) bundles it to `lib-dist/`, which is what `package.json`'s `main`/`types`/`exports` point to for anyone doing `npm install ocbc-design-system`.
+
+Two build tools, two output folders (`dist/` for the site, `lib-dist/` for the library), on purpose, so a Vercel deploy of the demo can never clobber the library build or vice versa.
 
 ## Provenance, read before shipping anything customer-facing
 
@@ -62,5 +69,7 @@ OCBC Indonesia's content splits into **NYALA** (individual Financial Fitness) an
 
 ```sh
 npm install
-npm run build   # tsup → dist/index.js, dist/index.css, dist/index.d.ts
+npm run dev          # Vite dev server for the demo site
+npm run build        # Vite production build of the demo site → dist/
+npm run build:lib    # tsup build of the component library → lib-dist/
 ```

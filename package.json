@@ -1,25 +1,28 @@
 {
   "name": "ocbc-design-system",
   "version": "0.1.0",
-  "description": "OCBC Indonesia visual identity as a React component library: tokens, typography, logo, buttons, tags, icons, and slide-card layouts.",
+  "description": "OCBC Indonesia visual identity as a React component library: tokens, typography, logo, buttons, tags, icons, and slide-card layouts. Also ships a Vite demo site (this repo's Vercel deploy target) that renders the components live.",
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
-  "style": "./dist/index.css",
+  "main": "./lib-dist/index.js",
+  "module": "./lib-dist/index.js",
+  "types": "./lib-dist/index.d.ts",
+  "style": "./lib-dist/index.css",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js"
+      "types": "./lib-dist/index.d.ts",
+      "import": "./lib-dist/index.js"
     },
-    "./styles.css": "./dist/index.css"
+    "./styles.css": "./lib-dist/index.css"
   },
   "files": [
-    "dist"
+    "lib-dist"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "build:lib": "tsup",
+    "dev:lib": "tsup --watch"
   },
   "peerDependencies": {
     "react": ">=18",
@@ -28,9 +31,11 @@
   "devDependencies": {
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.3.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "tsup": "^8.2.4",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "vite": "^5.4.0"
   }
 }

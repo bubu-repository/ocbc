@@ -44,21 +44,25 @@
   align-self: flex-start;
 }
 
-.ocbc-slidecard__logo--mark {
-  position: absolute;
-  left: var(--ocbc-space-safe);
-  bottom: var(--ocbc-space-safe);
+/* A real flex-flow row, not position: absolute, pushed to the bottom of the
+   card via margin-top: auto so it always sits after the content in normal
+   flow. That's what keeps it from overlapping long content instead of
+   floating on top of it: the card grows to fit content first, then the
+   footer takes whatever space is left. */
+.ocbc-slidecard__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  z-index: 1;
 }
 
 .ocbc-slidecard__page {
-  position: absolute;
-  right: var(--ocbc-space-safe);
-  bottom: var(--ocbc-space-safe);
   font-family: var(--ocbc-font-family);
   font-weight: 700;
   font-size: 0.875rem;
   color: var(--ocbc-slate);
-  z-index: 1;
 }
 
 .ocbc-slidecard--dark .ocbc-slidecard__page,

@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  background: var(--ocbc-off-white);
+  font-family: var(--ocbc-font-family);
+}
+
+.site {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+}
+
+.site__header {
+  margin-bottom: 2rem;
+}
+
+.site__header h1 {
+  font-family: var(--ocbc-font-family);
+  color: var(--ocbc-charcoal);
+  margin: 0 0 0.5rem;
+}
+
+.site__header p {
+  color: var(--ocbc-slate);
+  max-width: 60ch;
+  margin: 0;
+}
+
+.site__header code {
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+}
+
+/* carouselAspect locks each card to the exact 1080:1350 IG export ratio,
+   which is right for generating real carousel images but too cramped for
+   this responsive demo grid at a fixed width: let height follow content
+   here instead, so text never overflows the card. */
+.site main .ocbc-slidecard {
+  width: 320px;
+  aspect-ratio: auto;
+  min-height: 320px;
+}

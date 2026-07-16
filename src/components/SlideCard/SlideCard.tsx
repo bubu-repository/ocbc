@@ -59,20 +59,31 @@ export function SlideCard({
     .filter(Boolean)
     .join(" ");
 
+  const hasFooter = logo === "mark" || (page != null && total != null);
+
   return (
     <div className={classes} {...rest}>
-      {logo !== "none" && (
+      {logo === "hero" && (
         <Logo
           variant={LOGO_VARIANT_BY_TONE[tone]}
-          height={logo === "hero" ? 44 : 24}
-          className={`ocbc-slidecard__logo ocbc-slidecard__logo--${logo}`}
+          height={44}
+          className="ocbc-slidecard__logo ocbc-slidecard__logo--hero"
         />
       )}
       <div className="ocbc-slidecard__content">{children}</div>
-      {page != null && total != null && (
-        <span className="ocbc-slidecard__page">
-          {page}/{total}
-        </span>
+      {hasFooter && (
+        <div className="ocbc-slidecard__footer">
+          {logo === "mark" ? (
+            <Logo variant={LOGO_VARIANT_BY_TONE[tone]} height={24} className="ocbc-slidecard__logo" />
+          ) : (
+            <span />
+          )}
+          {page != null && total != null && (
+            <span className="ocbc-slidecard__page">
+              {page}/{total}
+            </span>
+          )}
+        </div>
       )}
     </div>
   );
