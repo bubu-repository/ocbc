@@ -4,12 +4,12 @@ OCBC Indonesia's visual identity as a React component library: color and type to
 
 This package is the code counterpart to the brand guidelines skill under `brand-guidelines/` (voice, copywriting rules, layout specs). That skill documents the rules in prose; this package makes the visual rules buildable.
 
-This repo has two separate build targets, and it matters which one runs where:
+**What's actually deployed:** the repo root's `index.html` is a separate, self-contained static deliverable (an OCBC social performance audit report), and it's what Vercel serves. `vercel.json` is configured for a plain static deploy (no framework, no install/build step, output directory is the repo root), so it ignores the component library's build tooling entirely.
 
-- **The demo site** (`index.html`, `site/`) is what Vercel deploys. It's a small Vite app that imports the components straight from `src/` and renders the worked Dana Darurat carousel example, so there's always something real to look at live. `npm run build` (Vite) is the one Vercel calls; it outputs to `dist/`.
-- **The component library** (`src/`) is the actual publishable package. `npm run build:lib` (tsup) bundles it to `lib-dist/`, which is what `package.json`'s `main`/`types`/`exports` point to for anyone doing `npm install ocbc-design-system`.
+The component library and its own demo live alongside it, but aren't the deploy target right now:
 
-Two build tools, two output folders (`dist/` for the site, `lib-dist/` for the library), on purpose, so a Vercel deploy of the demo can never clobber the library build or vice versa.
+- **The component library** (`src/`) is the publishable package. `npm run build:lib` (tsup) bundles it to `lib-dist/`, which is what `package.json`'s `main`/`types`/`exports` point to for anyone doing `npm install ocbc-design-system`.
+- **A Vite demo of the library** (`site/`, `vite.config.ts`) renders the components live (the worked Dana Darurat carousel example). `npm run build` (Vite) builds it to `dist/`. It's not currently wired up to the Vercel deploy since the audit report occupies the `index.html` slot at repo root; if you want the demo live too, it'll need its own path or its own Vercel project.
 
 ## Provenance, read before shipping anything customer-facing
 
